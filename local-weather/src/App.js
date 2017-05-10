@@ -30,12 +30,19 @@ class App extends Component {
 	}
 
 	changeTemp() {
-		let { latitude, longitude, unit } = this.state;
+		let { temp, unit } = this.state;
 
-		if(unit === 'metric') unit = 'imperial';
-		else unit = 'metric';
+		if(temp) {
+			if(unit === 'metric'){
+				temp = (temp * 1.8 + 32).toFixed(0);
+				unit = 'imperial';
+			} else {
+				temp = ((temp - 32) / 1.8).toFixed(0);
+				unit = 'metric';
+			}
+		}
 
-		this.setTemperature(latitude, longitude, unit);
+		this.setState({ temp, unit });
 	}
 
 	componentDidMount() {
@@ -56,11 +63,13 @@ class App extends Component {
 		return (
 			<div className="container-fluid">
 				<div className="row">
-					<div className="weather">
-						<h2>{ location }</h2>
-						<h3>{ icon_url ? <img src={icon_url} alt="icon" /> : '' }  { temp ? unit === 'metric' ? temp+'°C' : temp+'°K' : '' }</h3>
-						<button onClick={this.changeTemp} className="btn btn-primary">C / K</button>
-					</div>
+					{ location ? (
+						<div className="weather">
+							<h2>{ location }</h2>
+							<h3>{ icon_url ? <img src={icon_url} alt="icon" /> : '' }  { temp ? unit === 'metric' ? temp+'°C' : temp+'°K' : '' }</h3>
+							<button onClick={this.changeTemp} className="btn btn-primary">C / K</button>
+						</div>
+					) : (<h4 className="text-center">You must allow the geolocation API.</h4>)}
 
 					<footer className="nav navbar-inverse navbar-fixed-bottom">
 						<div className="container">

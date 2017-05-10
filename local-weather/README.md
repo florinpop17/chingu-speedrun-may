@@ -15,7 +15,7 @@ Build an app that is functionally similar to this: http://codepen.io/FreeCodeCam
 
 * Twitter-bootstrap for the styling
 
-* Geolocation API
+* Geolocation HTML5 API
 
 * OpenWeatherMap API
 

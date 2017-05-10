@@ -1,0 +1,17 @@
+body {
+    margin: 0;
+    padding: 0 0 70px;
+    font-family: sans-serif;
+}
+
+footer {
+    color: #dddddd;
+}
+
+footer p {
+    margin-top: 10px;
+}
+
+footer i {
+    color: #ff0000;
+}

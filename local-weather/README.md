@@ -15,7 +15,7 @@ Build an app that is functionally similar to this: http://codepen.io/FreeCodeCam
 
 * Twitter-bootstrap for the styling
 
-* Geolocation HTML5 API
+* Geolocation HTML5 API => Removed it because chrome only support it on https and used freegeoip API instead
 
 * OpenWeatherMap API
 

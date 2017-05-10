@@ -46,15 +46,16 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition((position) => {
-				const { latitude, longitude } = position.coords;
+		axios.get('http://freegeoip.net/json/')
+			.then(res => {
+				if(res.status === 200) {
+					const { latitude, longitude } = res.data;
 
-				this.setTemperature(latitude, longitude, 'metric');
+					this.setTemperature(latitude, longitude, 'metric');
 
-				this.setState({ latitude, longitude });
+					this.setState({ latitude, longitude });
+				}
 			})
-		}
 	}
 
 	render() {

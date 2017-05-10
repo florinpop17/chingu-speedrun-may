@@ -4,7 +4,7 @@ html, body, #root {
 
 body {
     margin: 0;
-    padding: 0;
+    padding: 0 0 70px;
     font-family: sans-serif;
 }
 
@@ -27,4 +27,16 @@ body {
 
 .quote .lead i {
     color: #2fa4e7;
+}
+
+footer {
+    color: #dddddd;
+}
+
+footer p {
+    margin-top: 10px;
+}
+
+footer i {
+    color: #ff0000;
 }

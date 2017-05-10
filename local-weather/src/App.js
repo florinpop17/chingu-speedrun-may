@@ -6,7 +6,7 @@ class App extends Component {
         <div className="container-fluid">
             <div className="row">
                 <div className="col-md-12">
-                    <h2>Hello to React App</h2>
+                    <h2>Hello to Local weather App</h2>
                 </div>
 
                 <footer className="nav navbar-inverse navbar-fixed-bottom">

@@ -7,6 +7,20 @@ class App extends Component {
 		this.state = {
 			articles: []
 		}
+
+		this.getWiki = this.getWiki.bind(this);
+	}
+
+	getWiki() {
+		const query = this.refs.search.value || 'Main Page';
+		axios.get(`https://en.wikipedia.org/w/api.php?format=json&origin=*&action=query&generator=search&prop=extracts|info&inprop=url&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch=${query}`)
+			.then(res => {
+				console.log(res.data);
+			})
+	}
+
+	componentDidMount() {
+		this.getWiki();
 	}
 
 	render() {

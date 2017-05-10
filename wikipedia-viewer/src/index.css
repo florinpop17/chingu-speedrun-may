@@ -5,6 +5,7 @@ body {
 }
 
 .form-wi {
+	display: inline-block;
     width: calc(100% - 50px);
 }
 

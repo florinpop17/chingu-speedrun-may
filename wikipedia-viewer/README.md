@@ -25,3 +25,5 @@ Build an app that is functionally similar to this: https://codepen.io/FreeCodeCa
 * Journal bootswatch theme
 
 * Font-Awesome icons
+
+* Used the mediawiki API

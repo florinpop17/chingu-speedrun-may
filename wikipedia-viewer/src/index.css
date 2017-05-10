@@ -8,6 +8,11 @@ footer {
     color: #dddddd;
 }
 
+footer a{
+	color: #dddddd;
+    text-decoration: underline;
+}
+
 footer p {
     margin-top: 10px;
 }

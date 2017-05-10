@@ -24,6 +24,12 @@ Build an app that is functionally similar to this: https://codepen.io/FreeCodeCa
 
 * Twitter-bootstrap for the styling
 
+* Lumen bootswatch theme
+
 * Font-awesome icons
 
-* Axios for API calls
+* JSONP for API calls
+
+* Added filters: ['all', 'on', 'off'] and by search term
+
+* To run it, do: `npm run build` in this directory. This will create a build folder and you can open *index.html* file to check out the project.

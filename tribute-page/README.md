@@ -19,3 +19,5 @@ Build an app that is functionally similar to this: https://codepen.io/FreeCodeCa
 * Used bootswatch flatly theme.
 
 * Added info from wikipedia.
+
+* To run it, do: `npm start build` in this directory.

@@ -1,7 +1,15 @@
 body {
-    margin: 0;
+    margin: 15%;
     padding: 0 0 70px;
     font-family: sans-serif;
+}
+
+.weather {
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+    margin: auto;
+    padding: 5px 0 25px;
+    text-align: center;
+    width: 400px;
 }
 
 footer {

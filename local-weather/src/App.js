@@ -11,7 +11,7 @@ class App extends Component {
 			unit: 'metric',
 			location: undefined,
 			temp: undefined,
-			error: undefined
+			icon_url: undefined
 		}
 
 		this.setTemperature = this.setTemperature.bind(this);
@@ -24,10 +24,8 @@ class App extends Component {
 			axios.get(`http://api.openweathermap.org/data/2.5/weather?&appid=067f9b0a0e77a197bf09f73103141290&units=${unit}&lat=${latitude}&lon=${longitude}`)
 				.then(res => {
 					console.log(res.data);
-					this.setState({ temp: res.data.main.temp, location: res.data.name, unit, error: '' });
+					this.setState({ temp: res.data.main.temp, location: res.data.name, icon_url: `http://openweathermap.org/img/w/${res.data.weather[0].icon}.png`, unit, error: '' });
 				});
-		} else {
-			this.setState({ error: 'Please provide latitude and longitude.' });
 		}
 	}
 
@@ -53,15 +51,14 @@ class App extends Component {
 	}
 
 	render() {
-		const { error, temp, location, unit } = this.state;
+		const { temp, location, unit, icon_url } = this.state;
 
 		return (
 			<div className="container-fluid">
 				<div className="row">
-					<div className="col-md-12">
+					<div className="weather">
 						<h2>{ location }</h2>
-						<h3>{ temp ? unit === 'metric' ? temp+'°C' : temp+'°K' : '' }</h3>
-						{ error }
+						<h3>{ icon_url ? <img src={icon_url} alt="icon" /> : '' }  { temp ? unit === 'metric' ? temp+'°C' : temp+'°K' : '' }</h3>
 						<button onClick={this.changeTemp} className="btn btn-primary">C / K</button>
 					</div>
 

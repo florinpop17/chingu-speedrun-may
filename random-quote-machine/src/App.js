@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import quotes from './quotes_json';
+import quotes_json from './quotes_json';
 
 import Quote from './components/Quote';
 
@@ -8,7 +8,7 @@ class App extends Component {
         super();
 
         this.state = {
-            quotes: quotes
+            quotes: quotes_json
         }
     }
 

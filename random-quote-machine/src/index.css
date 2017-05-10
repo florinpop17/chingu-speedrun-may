@@ -1,5 +1,30 @@
+html, body, #root {
+    height: 100%;
+}
+
 body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.quote {
+    padding: 30px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+}
+
+.quote .lead {
+    margin-top: 30px;
+}
+
+.quote .lead i {
+    color: #2fa4e7;
 }

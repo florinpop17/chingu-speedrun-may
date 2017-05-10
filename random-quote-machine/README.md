@@ -15,3 +15,9 @@ Build an app that is functionally similar to this: https://codepen.io/FreeCodeCa
 * Used create-react-app to scaffold the application
 
 * Twitter-bootstrap for the styling
+
+* Cerulean bootswatch theme
+
+* Font-awesome
+
+* Quotes collected from the internet

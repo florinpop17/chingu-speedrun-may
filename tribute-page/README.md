@@ -12,6 +12,10 @@ Build an app that is functionally similar to this: https://codepen.io/FreeCodeCa
 
 ## Notes
 
-* Used create-react-app to scaffold the application
+* Used create-react-app to scaffold the application.
 
-* Twitter-bootstrap for the styling
+* Twitter-bootstrap for the styling.
+
+* Used bootswatch flatly theme.
+
+* Added info from wikipedia.

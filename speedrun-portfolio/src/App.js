@@ -21,7 +21,7 @@ class App extends Component {
 						<ul>
 							{ projects ? projects.map((project, idx) => (
 								<li key={idx}>
-									<a href={ '/'+project+'/' }>{ project }</a>
+									<a target="_blank" href={ project+'/' }>{ project }</a>
 								</li>
 							)) : '' }
 						</ul>

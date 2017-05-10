@@ -1,7 +1,11 @@
 body {
-    margin: 0;
+    margin: 5% 0 0;
     padding: 0 0 70px;
     font-family: sans-serif;
+}
+
+.form-wi {
+    width: calc(100% - 50px);
 }
 
 footer {

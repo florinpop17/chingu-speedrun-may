@@ -20,4 +20,4 @@ Build an app that is functionally similar to this: https://codepen.io/FreeCodeCa
 
 * Added info from wikipedia.
 
-* To run it, do: `npm start build` in this directory.
+* To run it, do: `npm run build` in this directory. This will create a build folder and you can open *index.html* file to check out the project.

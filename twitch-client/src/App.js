@@ -6,8 +6,11 @@ class App extends Component {
 		super();
 
 		this.state = {
-			streamers: []
+			streamers: [],
+			filter: 'all'
 		}
+
+		this.filterStream = this.filterStream.bind(this);
 	}
 
 	componentDidMount() {
@@ -44,11 +47,32 @@ class App extends Component {
 		});
 	}
 
+	filterStream(filter) {
+		this.setState({ filter });
+	}
+
 	render() {
-		const { streamers } = this.state;
+		let { streamers, filter } = this.state;
+
+		if(filter === 'on'){
+			streamers = streamers.filter((streamer) => streamer.status );
+		}
+
+		if(filter === 'off'){
+			streamers = streamers.filter((streamer) => !streamer.status );
+		}
 
 		return (
 			<div className="container">
+				<div className="row">
+					<div className="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
+						<div className="buttons">
+							<button onClick={() => this.filterStream('all')} className="btn btn-primary">All streams</button>
+							<button onClick={() => this.filterStream('on')} className="btn btn-primary">Online</button>
+							<button onClick={() => this.filterStream('off')} className="btn btn-primary">Offline</button>
+						</div>
+					</div>
+				</div>
 				<div className="row">
 					<div className="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
 						{ streamers ? streamers.map(streamer => (
@@ -65,19 +89,21 @@ class App extends Component {
 											<p>{ streamer.bio || 'No bio provided' }</p>
 											{ streamer.status ? (<p className="text-info">{ streamer.status }</p>) : '' }
 										</div>
-										{ streamer.streams ? (
-											<div className="media-right text-center">
-												<p>Online</p>
-												<a href={ `https://www.twitch.tv${streamer.url}` } className="btn btn-primary"><i className="fa fa-play"></i></a>
-											</div>
-										) : 'Offline' }
+										<div className="media-right">
+											{ streamer.streams ? (
+												<div className="text-center">
+													<p>Online</p>
+													<a href={ `https://www.twitch.tv${streamer.url}` } className="btn btn-primary"><i className="fa fa-play"></i></a>
+												</div>
+											) : 'Offline' }
+										</div>
 									</div>
 								</div>
 							</div>
 						)) : '' }
 					</div>
 
-					<footer className="nav navbar-inverse navbar-fixed-bottom">
+					<footer className="nav navbar-default navbar-fixed-bottom">
 						<div className="container">
 							<p className="text-center">Create with <i className="fa fa-heart"></i> by <a target="_blank" href="http://www.florin-pop.com">Florin Pop</a>. Github <a target="_blank" href="https://github.com/florinpop17/chingu-speedrun-may">repo</a>.</p>
 						</div>

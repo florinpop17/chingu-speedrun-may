@@ -27,3 +27,5 @@ Build an app that is functionally similar to this: https://codepen.io/FreeCodeCa
 * Font-Awesome icons
 
 * Used the mediawiki API
+
+* To run it, do: `npm run build` in this directory. This will create a build folder and you can open *index.html* file to check out the project.

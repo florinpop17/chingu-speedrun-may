@@ -20,3 +20,5 @@ Build an app that is functionally similar to this: http://codepen.io/FreeCodeCam
 * OpenWeatherMap API
 
 * Axios for API call
+
+* To run it, do: `npm run build` in this directory. This will create a build folder and you can open *index.html* file to check out the project.

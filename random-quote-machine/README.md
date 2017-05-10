@@ -18,6 +18,6 @@ Build an app that is functionally similar to this: https://codepen.io/FreeCodeCa
 
 * Cerulean bootswatch theme
 
-* Font-awesome
+* Font-awesome for twitter and quote icons
 
 * Quotes collected from the internet

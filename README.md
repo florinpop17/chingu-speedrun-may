@@ -4,6 +4,7 @@ You can find more informations about it [here](https://github.com/P1xt/chingu-fc
 
 # Applications built so far:
 
-| Date created | Link                                                                                | Title          |
-| :----------: | ----------------------------------------------------------------------------------- | :------------: |
-| 10/05/2017   | [here](https://github.com/florinpop17/chingu-speedrun-may/tree/master/tribute-page) | Tribute page   |
+| Date created | Link                                                                                        | Title                |
+| :----------: | ------------------------------------------------------------------------------------------- | :------------------: |
+| 10/05/2017   | [here](https://github.com/florinpop17/chingu-speedrun-may/tree/master/tribute-page)         | Tribute page         |
+| 10/05/2017   | [here](https://github.com/florinpop17/chingu-speedrun-may/tree/master/random-quote-machine) | Random Quote Machine |

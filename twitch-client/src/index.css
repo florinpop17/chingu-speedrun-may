@@ -4,8 +4,17 @@ body {
     font-family: sans-serif;
 }
 
+.logo {
+	width: 60px;
+	height: 60px;
+}
+
+.media-right p {
+    margin-bottom: 0;
+}
+
 footer {
-    color: #dddddd;
+    color: #333333;
 }
 
 footer p {

@@ -14,3 +14,9 @@ Build an app that is functionally similar to this: http://codepen.io/FreeCodeCam
 * Used create-react-app to scaffold the application
 
 * Twitter-bootstrap for the styling
+
+* Geolocation API
+
+* OpenWeatherMap API
+
+* Axios for API call

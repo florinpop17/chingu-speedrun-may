@@ -1,23 +1,79 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class App extends Component {
-  render() {
-    return (
-        <div className="container-fluid">
-            <div className="row">
-                <div className="col-md-12">
-                    <h2>Hello to Local weather App</h2>
-                </div>
+	constructor() {
+		super();
 
-                <footer className="nav navbar-inverse navbar-fixed-bottom">
-                    <div className="container">
-                        <p className="text-center">Create with <i className="fa fa-heart"></i> by <a target="_blank" href="http://www.florin-pop.com">Florin Pop</a>. Github <a target="_blank" href="https://github.com/florinpop17/chingu-speedrun-may">repo</a>.</p>
-                    </div>
-                </footer>
-            </div>
-        </div>
-    );
-  }
+		this.state = {
+			latitude: undefined,
+			longitude: undefined,
+			unit: 'metric',
+			location: undefined,
+			temp: undefined,
+			error: undefined
+		}
+
+		this.setTemperature = this.setTemperature.bind(this);
+		this.changeTemp = this.changeTemp.bind(this);
+	}
+
+	setTemperature(latitude, longitude, unit) {
+
+		if(latitude && longitude) {
+			axios.get(`http://api.openweathermap.org/data/2.5/weather?&appid=067f9b0a0e77a197bf09f73103141290&units=${unit}&lat=${latitude}&lon=${longitude}`)
+				.then(res => {
+					console.log(res.data);
+					this.setState({ temp: res.data.main.temp, location: res.data.name, unit, error: '' });
+				});
+		} else {
+			this.setState({ error: 'Please provide latitude and longitude.' });
+		}
+	}
+
+	changeTemp() {
+		let { latitude, longitude, unit } = this.state;
+
+		if(unit === 'metric') unit = 'imperial';
+		else unit = 'metric';
+
+		this.setTemperature(latitude, longitude, unit);
+	}
+
+	componentDidMount() {
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition((position) => {
+				const { latitude, longitude } = position.coords;
+
+				this.setTemperature(latitude, longitude, 'metric');
+
+				this.setState({ latitude, longitude });
+			})
+		}
+	}
+
+	render() {
+		const { error, temp, location, unit } = this.state;
+
+		return (
+			<div className="container-fluid">
+				<div className="row">
+					<div className="col-md-12">
+						<h2>{ location }</h2>
+						<h3>{ temp ? unit === 'metric' ? temp+'°C' : temp+'°K' : '' }</h3>
+						{ error }
+						<button onClick={this.changeTemp} className="btn btn-primary">C / K</button>
+					</div>
+
+					<footer className="nav navbar-inverse navbar-fixed-bottom">
+						<div className="container">
+							<p className="text-center">Create with <i className="fa fa-heart"></i> by <a target="_blank" href="http://www.florin-pop.com">Florin Pop</a>. Github <a target="_blank" href="https://github.com/florinpop17/chingu-speedrun-may">repo</a>.</p>
+						</div>
+					</footer>
+				</div>
+			</div>
+		);
+	}
 }
 
 export default App;

@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Quote = ({ quote, mama }) => (
+const Quote = ({ text, author }) => (
     <div className="quote">
-        <p>The quote: { quote } { mama } </p>
+        <p>{ text } { author } </p>
     </div>
 )
 

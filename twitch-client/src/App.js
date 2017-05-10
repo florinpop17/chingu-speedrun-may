@@ -7,10 +7,12 @@ class App extends Component {
 
 		this.state = {
 			streamers: [],
-			filter: 'all'
+			filter_status: 'all',
+			search_term: ''
 		}
 
 		this.filterStream = this.filterStream.bind(this);
+		this.searchStream = this.searchStream.bind(this);
 	}
 
 	componentDidMount() {
@@ -47,20 +49,26 @@ class App extends Component {
 		});
 	}
 
-	filterStream(filter) {
-		this.setState({ filter });
+	filterStream(filter_status) {
+		this.setState({ filter_status });
+	}
+
+	searchStream() {
+		this.setState({ search_term: this.refs.search.value });
 	}
 
 	render() {
-		let { streamers, filter } = this.state;
+		let { streamers, filter_status, search_term } = this.state;
 
-		if(filter === 'on'){
+		if(filter_status === 'on'){
 			streamers = streamers.filter((streamer) => streamer.status );
 		}
 
-		if(filter === 'off'){
+		if(filter_status === 'off'){
 			streamers = streamers.filter((streamer) => !streamer.status );
 		}
+
+		streamers = streamers.filter((streamer) => streamer.display_name.toLowerCase().includes(search_term) );
 
 		return (
 			<div className="container">
@@ -70,6 +78,10 @@ class App extends Component {
 							<button onClick={() => this.filterStream('all')} className="btn btn-primary">All streams</button>
 							<button onClick={() => this.filterStream('on')} className="btn btn-primary">Online</button>
 							<button onClick={() => this.filterStream('off')} className="btn btn-primary">Offline</button>
+						</div>
+						<div className="input-group">
+							<span className="input-group-addon">Search: </span>
+							<input onChange={this.searchStream} ref="search" type="text" className="form-control"/>
 						</div>
 					</div>
 				</div>

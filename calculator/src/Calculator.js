@@ -6,73 +6,79 @@ class Calculator extends Component {
 
         this.state = {
             display: '',
-            result: 0,
-            isDot: false,
-            error: ''
+            curr: 0,
+            old: 0,
+            operation: ''
         }
     }
 
     handleNumber(nr) {
-        let { result } = this.state;
+        let { curr } = this.state;
 
-        result *= 10;
-        result += nr;
-        if(result > 999999999999) {
-            this.setState({ error: 'The number is too large.' })
-            setInterval(() => {this.setState({ error: '' })}, 3000);
+        curr *= 10;
+        curr += nr;
+
+        if(curr > 999999999999){
+            this.setState({ error: 'Maximum limit reached.' })
+            setTimeout(()=> {this.setState({ error: '' })}, 3000);
         } else {
-            this.setState({ result });
+            this.setState({ curr });
         }
     }
 
-    handleOperation(op) {
-        switch (op) {
-            case '+' : {
-                console.log('+ was pressed');
-                break;
-            }
-            case '-' : {
-                console.log('- was pressed');
-                break;
-            }
-            case '/' : {
-                console.log('/ was pressed');
-                break;
-            }
-            case '*' : {
-                console.log('* was pressed');
-                break;
-            }
-            case '±' : {
-                console.log('± was pressed');
-                break;
-            }
-            case '.' : {
-                console.log('. was pressed');
-                break;
-            }
-            case '=' : {
-                console.log('= was pressed');
-                break;
+    handleOperation(operation) {
+            switch (operation) {
+                case '+' : {
+                    console.log('+ was pressed');
+                    break;
+                }
+                case '-' : {
+                    console.log('- was pressed');
+                    break;
+                }
+                case '/' : {
+                    console.log('/ was pressed');
+                    break;
+                }
+                case '*' : {
+                    console.log('* was pressed');
+                    break;
+                }
+                case '±' : {
+                    console.log('± was pressed');
+                    break;
+                }
+                case '%' : {
+                    console.log('% was pressed');
+                    break;
+                }
+                case '.' : {
+                    console.log('. was pressed');
+                    break;
+                }
+                case '=' : {
+                    console.log('= was pressed');
+                    break;
+                }
+
+                default: break;
             }
 
-            default: break;
-        }
     }
 
     clearAll() {
-        console.log('clear all')
+        this.setState({ display: '', curr: 0, old: 0})
     }
 
     render(){
-        const { display, result, error } = this.state;
+        const { display, curr, error } = this.state;
 
         return (
             <div className="calculator-container">
                 { error ? <alert className="alert alert-warning">{ error }</alert> : '' }
                 <div className="calculator">
                     <p className="display">{ display }</p>
-                    <input type="text" value={ result } className="form-control" disabled/>
+                    <input type="text" value={ curr } className="form-control" disabled/>
                     <div className="buttons-group">
                         <button onClick={() => this.clearAll()} className="btn btn-primary">C</button>
                         <button onClick={() => this.handleOperation('±')} className="btn btn-primary">±</button>

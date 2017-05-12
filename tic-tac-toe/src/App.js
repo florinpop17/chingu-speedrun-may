@@ -10,6 +10,7 @@ class App extends Component {
 			cells : ['', '', '', '', '', '', '', '', ''],
 			current_player: 'X',
 			winner: undefined,
+			won_combo: [0, 0, 0, 0, 0, 0, 0, 0, 0],
 			winning_combo: [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
 		}
 
@@ -32,13 +33,18 @@ class App extends Component {
 	}
 
 	checkWin() {
-		let { cells, winning_combo, winner } = this.state;
+		let { cells, winning_combo, winner, won_combo } = this.state;
 
 		for(let combo of winning_combo){
 			if(cells[combo[0]] && cells[combo[1]] && cells[combo[2]]) { // cells aren't empty
 				if(cells[combo[0]] === cells[combo[1]] && cells[combo[1]] === cells[combo[2]]){
 					winner = cells[combo[0]];
-					this.setState({ winner });
+
+					won_combo[combo[0]] = 1;
+					won_combo[combo[1]] = 1;
+					won_combo[combo[2]] = 1;
+
+					this.setState({ winner, won_combo });
 					break;
 				}
 			}
@@ -49,18 +55,19 @@ class App extends Component {
 		this.setState({
 			cells: ['', '', '', '', '', '', '', '', ''],
 			winner: undefined,
-			current_player: 'X'
+			current_player: 'X',
+			won_combo: [0, 0, 0, 0, 0, 0, 0, 0, 0]
 		});
 	}
 
 	render() {
-		const { cells, winner } = this.state;
+		const { cells, winner, won_combo } = this.state;
 
 		return (
 			<div className="container-fluid">
 				<div className="row">
 					<div className="col-md-12">
-						<Board cells={cells} check={this.handleClick}/>
+						<Board cells={cells} check={this.handleClick} won_combo={won_combo} />
 						{ winner ? (
 							<div className="text-center">
 								<p>{ winner } won the game.</p>

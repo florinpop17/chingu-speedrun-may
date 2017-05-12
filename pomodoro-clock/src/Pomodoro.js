@@ -5,23 +5,37 @@ class Pomodoro extends Component {
         super();
 
         this.state = {
-            time: 25 * 60, // 25 minutes
+            time: 1 * 60, // 25 minutes
             running: false,
-            session_time: 25,
+            run: undefined,
+            session_time: 1,
             break_time: 15
         }
     }
 
     startClock() {
-        this.setState({ running: true });
+        let { run } = this.state;
+        run = setInterval(() => {
+            let { time } = this.state;
+            time -= 1;
+
+            if(time < 1) {
+                clearInterval(run);
+            }
+
+            this.setState({ time });
+        }, 100)
+        this.setState({ running: true, run });
     }
 
     stopClock() {
-        this.setState({ running: false });
+        const { session_time } = this.state;
+
+        this.setState({ running: false, run: undefined, time: session_time * 60 });
     }
 
     changeTime(time, value){
-        let { session_time, break_time } = this.state;
+        let { session_time, break_time, running } = this.state;
 
         if(time === 'break'){
             break_time += value;
@@ -31,6 +45,8 @@ class Pomodoro extends Component {
 
         if(break_time < 1) break_time = 1;
         if(session_time < 1) session_time = 1;
+
+        if(!running) this.setState({ time: session_time * 60 })
 
         this.setState({ session_time, break_time })
     }

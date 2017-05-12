@@ -5,12 +5,12 @@ class Pomodoro extends Component {
         super();
 
         this.state = {
-            time: 1 * 60, // 25 minutes
+            time: 25 * 60, // 25 minutes
             running: false,
             interval: undefined,
             current: 'session',
-            session_time: 1,
-            break_time: 1
+            session_time: 25,
+            break_time: 5
         }
     }
 
@@ -27,7 +27,7 @@ class Pomodoro extends Component {
                 }
 
                 this.setState({ time, current })
-            }, 100)
+            }, 1000)
             this.setState({ running, interval })
         }
     }

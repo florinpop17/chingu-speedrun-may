@@ -1,7 +1,37 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0 0 70px;
     font-family: sans-serif;
+}
+
+.board {
+	width: 300px;
+	height: 300px;
+    margin: 20% auto 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cell {
+	background-color: #fff;
+    color: #000000;
+    border-radius: 5px;
+    width: 90px;
+    height: 90px;
+    line-height: 90px;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.cell span {
+    font-size: 4em;
 }
 
 footer {

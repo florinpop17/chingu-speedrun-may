@@ -5,20 +5,21 @@ class Pomodoro extends Component {
         super();
 
         this.state = {
-            time: 25 * 60, // 25 minutes
+            time: 1 * 60, // 25 minutes
             running: false,
             interval: undefined,
             current: 'session',
-            session_time: 25,
-            break_time: 5
+            session_time: 1,
+            break_time: 1
         }
     }
 
     startClock() {
-        let { time, running, interval, current, session_time, break_time } = this.state;
+        let { time, running, interval, current } = this.state;
         if(!running) {
             running = true;
             interval = setInterval(() => {
+				let { session_time, break_time } = this.state;
                 time -= 1;
 
                 if(time === -1) {
@@ -51,21 +52,15 @@ class Pomodoro extends Component {
         this.setState({ running: false })
     }
 
-    changeTime(time, value){
+    changeTime(){
         let { session_time, break_time, running } = this.state;
 
-        if(time === 'break'){
-            break_time += value;
-        } else {
-            session_time += value;
-        }
-
-        if(break_time < 1) break_time = 1;
-        if(session_time < 1) session_time = 1;
+        break_time = +this.refs.break_time.value;
+        session_time = +this.refs.session_time.value;
 
         if(!running) this.setState({ time: session_time * 60 })
 
-        this.setState({ session_time, break_time })
+        this.setState({ session_time, break_time });
     }
 
     render() {
@@ -81,15 +76,11 @@ class Pomodoro extends Component {
                 <div className="action">
                     <div className="text-center">
                         <h4>Break time</h4>
-                        <button onClick={() => this.changeTime('break', -1)} className="btn btn-sm btn-primary btn-xs"><i className="fa fa-minus"></i></button>
-                        <span>{ break_time }</span>
-                        <button onClick={() => this.changeTime('break', 1)}className="btn btn-sm btn-primary btn-xs"><i className="fa fa-plus"></i></button>
+                        <input min="1" max="86400" step="1" onChange={() => this.changeTime()} type="number" value={ break_time } ref="break_time" className="form-control"/>
                     </div>
                     <div className="text-center">
                         <h4>Session time</h4>
-                        <button onClick={() => this.changeTime('session', -1)} className="btn btn-sm btn-primary btn-xs"><i className="fa fa-minus"></i></button>
-                        <span>{ session_time }</span>
-                        <button onClick={() => this.changeTime('session', 1)}className="btn btn-sm btn-primary btn-xs"><i className="fa fa-plus"></i></button>
+                        <input min="1" max="86400" step="1" onChange={() => this.changeTime()} type="number" value={ session_time } ref="session_time" className="form-control"/>
                     </div>
                 </div>
                 <div className="pomodoro-clock">

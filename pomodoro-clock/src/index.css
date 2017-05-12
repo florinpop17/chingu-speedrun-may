@@ -46,13 +46,9 @@ button {
     margin: 0 15px;
 }
 
-.action div button {
-    margin-top: -8px;
-}
-
-.action div span{
-    padding: 0 10px;
-    font-size: 1.3em;
+.action div input {
+    display: inline-block;
+    width: 80px;
 }
 
 footer {

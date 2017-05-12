@@ -12,4 +12,4 @@ You can find more informations about it [here](https://github.com/P1xt/chingu-fc
 | 10/05/2017   | [here](https://github.com/florinpop17/chingu-speedrun-may/tree/master/wikipedia-viewer)     | [here](http://www.florin-pop.com/work/Portfolio%20Speedrun/wikipedia-viewer/)     | Wikipedia Viewer     |
 | 10/05/2017   | [here](https://github.com/florinpop17/chingu-speedrun-may/tree/master/twitch-client)        | [here](http://www.florin-pop.com/work/Portfolio%20Speedrun/twitch-client/)        | Twitch Client        |
 | 12/05/2017   | [here](https://github.com/florinpop17/chingu-speedrun-may/tree/master/calculator)           | [here](http://www.florin-pop.com/work/Portfolio%20Speedrun/calculator/)           | Calculator           |
-| 12/05/2017   | [here](https://github.com/florinpop17/chingu-speedrun-may/tree/master/pomodoro=-clock)      | [here](http://www.florin-pop.com/work/Portfolio%20Speedrun/pomodoro-clock/)       | Pomodoro Clock       |
+| 12/05/2017   | [here](https://github.com/florinpop17/chingu-speedrun-may/tree/master/pomodoro-clock)       | [here](http://www.florin-pop.com/work/Portfolio%20Speedrun/pomodoro-clock/)       | Pomodoro Clock       |

@@ -71,6 +71,8 @@ class Calculator extends Component {
     handleSpecialOperation(operation) {
         let { display, curr, operations } = this.state;
 
+        let lastOpIdx = this.findLastOperator();
+
         switch (operation) {
             case '=': {
                 if(operations.indexOf(display[display.length-1]) > -1){
@@ -82,7 +84,6 @@ class Calculator extends Component {
                 break;
             }
             case '.': {
-                let lastOpIdx = this.findLastOperator();
                 let hasDot = false;
 
                 if(lastOpIdx === -1) lastOpIdx = 0; // avoid the case where you don't have an operation before
@@ -98,6 +99,22 @@ class Calculator extends Component {
 
                 break;
             }
+            case '%': {
+                if(lastOpIdx !== display.length-1){ // make sure the last is not the operation
+                    if(lastOpIdx === -1) { // no operations before
+                        let value = eval(display.join(''))
+                        value /= 100;
+
+                        display = (value+'').split('');
+                    } else {
+                        let value = eval(display.splice(lastOpIdx+1).join(''))
+                        value /= 100;
+
+                        display = display.concat((value+'').split(''));
+                    }
+                }
+            }
+
             default: break;
         }
 
@@ -119,6 +136,14 @@ class Calculator extends Component {
         this.setState({ display: ['0'], curr: 0, old: 0})
     }
 
+    clearLast() {
+        let { display } = this.state;
+
+        display.pop();
+
+        this.setState({ display });
+    }
+
     render(){
         const { display, curr, error } = this.state;
 
@@ -130,7 +155,7 @@ class Calculator extends Component {
                     <input type="text" value={ curr } className="form-control" disabled/>
                     <div className="buttons-group">
                         <button onClick={() => this.clearAll()} className="btn btn-primary">C</button>
-                        <button onClick={() => this.handleSpecialOperation('±')} className="btn btn-primary">±</button>
+                        <button onClick={() => this.clearLast()} className="btn btn-primary">AC</button>
                         <button onClick={() => this.handleSpecialOperation('%')} className="btn btn-primary">%</button>
                         <button onClick={() => this.handleOperation('/')} className="btn btn-secondary">/</button>
                     </div>

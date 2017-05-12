@@ -15,4 +15,8 @@ Build an app that is functionally similar to this: https://codepen.io/FreeCodeCa
 
 * Used create-react-app to scaffold the application
 
+* Solar bootswatch theme
+
+* Design implementation from Dribble
+
 * Twitter-bootstrap for the styling

@@ -7,31 +7,48 @@ class Pomodoro extends Component {
         this.state = {
             time: 1 * 60, // 25 minutes
             running: false,
-            run: undefined,
+            interval: undefined,
+            current: 'session',
             session_time: 1,
-            break_time: 15
+            break_time: 1
         }
     }
 
     startClock() {
-        let { run } = this.state;
-        run = setInterval(() => {
-            let { time } = this.state;
-            time -= 1;
+        let { time, running, interval, current, session_time, break_time } = this.state;
+        if(!running) {
+            running = true;
+            interval = setInterval(() => {
+                time -= 1;
 
-            if(time < 1) {
-                clearInterval(run);
-            }
+                if(time === -1) {
+                    current = current === 'session' ? 'break' : 'session';
+                    time = (current === 'break' ? break_time : session_time) * 60;
+                }
 
-            this.setState({ time });
-        }, 100)
-        this.setState({ running: true, run });
+                this.setState({ time, current })
+            }, 100)
+            this.setState({ running, interval })
+        }
     }
 
     stopClock() {
-        const { session_time } = this.state;
+        let { interval, running, time, current, session_time } = this.state;
+        if(running){
+            running = false;
+            clearInterval(interval);
+            interval = undefined;
+            current = 'session';
+            time = session_time * 60;
 
-        this.setState({ running: false, run: undefined, time: session_time * 60 });
+            this.setState({ running, current, time, interval });
+        }
+    }
+
+    pauseClock() {
+        let { interval } = this.state;
+        clearInterval(interval);
+        this.setState({ running: false })
     }
 
     changeTime(time, value){
@@ -52,7 +69,7 @@ class Pomodoro extends Component {
     }
 
     render() {
-        const { time, running, break_time, session_time } = this.state;
+        const { current, time, running, break_time, session_time } = this.state;
 
         let minutes = Math.floor(time / 60);
         let seconds = time % 60 < 10 ? '0' + (time % 60) : time % 60;
@@ -76,12 +93,16 @@ class Pomodoro extends Component {
                     </div>
                 </div>
                 <div className="pomodoro-clock">
-                    <p>{ timeDisplay }</p>
+                    <p>{ current }</p>
+                    <h3>{ timeDisplay }</h3>
                 </div>
                 { running ? (
-                    <div onClick={() => this.stopClock()}className="btn btn-primary">Stop</div>
+                    <div>
+                        <button onClick={() => this.pauseClock()} className="btn btn-warning">Pause</button>
+                        <button onClick={() => this.stopClock()} className="btn btn-danger">Stop</button>
+                    </div>
                 ) : (
-                    <div onClick={() => this.startClock()}className="btn btn-primary">Start</div>
+                    <button onClick={() => this.startClock()} className="btn btn-primary">Start</button>
                 )}
             </div>
         )

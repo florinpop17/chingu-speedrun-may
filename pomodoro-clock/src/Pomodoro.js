@@ -20,6 +20,21 @@ class Pomodoro extends Component {
         this.setState({ running: false });
     }
 
+    changeTime(time, value){
+        let { session_time, break_time } = this.state;
+
+        if(time === 'break'){
+            break_time += value;
+        } else {
+            session_time += value;
+        }
+
+        if(break_time < 1) break_time = 1;
+        if(session_time < 1) session_time = 1;
+
+        this.setState({ session_time, break_time })
+    }
+
     render() {
         const { time, running, break_time, session_time } = this.state;
 
@@ -31,17 +46,17 @@ class Pomodoro extends Component {
         return (
             <div className="pomodoro-container">
                 <div className="action">
-                    <div>
-                        <h4 className="text-center">Break time</h4>
-                        <button className="btn btn-primary btn-sm">-</button>
+                    <div className="text-center">
+                        <h4>Break time</h4>
+                        <button onClick={() => this.changeTime('break', -1)} className="btn btn-sm btn-primary btn-xs"><i className="fa fa-minus"></i></button>
                         <span>{ break_time }</span>
-                        <button className="btn btn-primary btn-sm">+</button>
+                        <button onClick={() => this.changeTime('break', 1)}className="btn btn-sm btn-primary btn-xs"><i className="fa fa-plus"></i></button>
                     </div>
-                    <div>
-                        <h4 className="text-center">Session time</h4>
-                        <button className="btn btn-primary btn-sm">-</button>
+                    <div className="text-center">
+                        <h4>Session time</h4>
+                        <button onClick={() => this.changeTime('session', -1)} className="btn btn-sm btn-primary btn-xs"><i className="fa fa-minus"></i></button>
                         <span>{ session_time }</span>
-                        <button className="btn btn-primary btn-sm">+</button>
+                        <button onClick={() => this.changeTime('session', 1)}className="btn btn-sm btn-primary btn-xs"><i className="fa fa-plus"></i></button>
                     </div>
                 </div>
                 <div className="pomodoro-clock">

@@ -6,17 +6,25 @@ class Pomodoro extends Component {
 
         this.state = {
             time: 25 * 60, // 25 minutes
-            running: false,
-            timer: this.getTimer
+            running: false
         }
     }
 
-    getTimer() {
-        
+    startClock() {
+        this.setState({ running: true });
+    }
+
+    stopClock() {
+        this.setState({ running: false });
     }
 
     render() {
-        const { time } = this.state;
+        const { time, running } = this.state;
+
+        let minutes = Math.floor(time / 60);
+        let seconds = time % 60 < 10 ? '0' + (time % 60) : time % 60;
+
+        const timeDisplay = `${minutes}:${seconds}`;
 
         return (
             <div className="pomodoro-container">
@@ -24,9 +32,13 @@ class Pomodoro extends Component {
 
                 </div>
                 <div className="pomodoro-clock">
-                    { Math.floor(time / 60) } : { time % 60 }
+                    <p>{ timeDisplay }</p>
                 </div>
-
+                { running ? (
+                    <div onClick={() => this.stopClock()}className="btn btn-primary">Stop</div>
+                ) : (
+                    <div onClick={() => this.startClock()}className="btn btn-primary">Start</div>
+                )}
             </div>
         )
     }

@@ -1,7 +1,30 @@
+html, body, #root, .container-fluid, .pomodoro-container {
+    height: 100%;
+}
+
 body {
     margin: 0;
     padding: 0 0 70px;
     font-family: sans-serif;
+}
+
+.pomodoro-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pomodoro-clock {
+    border-radius: 50%;
+    border: 2px solid #2780e3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.5em;
+    margin: 20px;
+    width: 200px;
+    height: 200px;
 }
 
 footer {

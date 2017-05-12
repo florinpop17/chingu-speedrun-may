@@ -5,28 +5,33 @@ class Calculator extends Component {
         super();
 
         this.state = {
-            display: '',
+            display: ['0'],
             curr: 0,
-            old: 0,
-            operation: ''
+            operations: ['+', '-', '*', '/']
         }
     }
 
     handleNumber(nr) {
-        let { curr } = this.state;
+        let { display, operations } = this.state;
 
-        curr *= 10;
-        curr += nr;
+        nr += ''; // convert to string
 
-        if(curr > 999999999999){
-            this.setState({ error: 'Maximum limit reached.' })
-            setTimeout(()=> {this.setState({ error: '' })}, 3000);
+
+        if (display.length === 1 && display[0] === '0') {// no multiple 0's
+            display[0] = nr;
+        } else if (display[display.length-1] === '0' && operations.indexOf(display[display.length-2]) > -1) {
+            display.pop();
+            display.push(nr);
         } else {
-            this.setState({ curr });
+            display.push(nr);
         }
+
+        this.setState({ display });
     }
 
     handleOperation(operation) {
+        let { display, operations } = this.state;
+
             switch (operation) {
                 case '+' : {
                     console.log('+ was pressed');
@@ -44,30 +49,40 @@ class Calculator extends Component {
                     console.log('* was pressed');
                     break;
                 }
-                case '±' : {
-                    console.log('± was pressed');
-                    break;
-                }
-                case '%' : {
-                    console.log('% was pressed');
-                    break;
-                }
-                case '.' : {
-                    console.log('. was pressed');
-                    break;
-                }
-                case '=' : {
-                    console.log('= was pressed');
-                    break;
-                }
 
                 default: break;
             }
 
+        let last = display[display.length-1];
+        let idx = operations.indexOf(last);
+
+        if(idx === -1) { // the last operation is not this operation
+            display.push(operation);
+        } else { // the last operation is not the same
+            display.pop();
+            display.push(operation);
+        }
+
+        this.setState({ display })
+    }
+
+    handleSpecialOperation(operation) {
+        let { display, curr } = this.state;
+
+        switch (operation) {
+            case '=': {
+                curr = eval(display.join('')); // to stay in line
+                display = [curr];
+                break;
+            }
+            default: break;
+        }
+
+        this.setState({ display, curr })
     }
 
     clearAll() {
-        this.setState({ display: '', curr: 0, old: 0})
+        this.setState({ display: ['0'], curr: 0, old: 0})
     }
 
     render(){
@@ -81,8 +96,8 @@ class Calculator extends Component {
                     <input type="text" value={ curr } className="form-control" disabled/>
                     <div className="buttons-group">
                         <button onClick={() => this.clearAll()} className="btn btn-primary">C</button>
-                        <button onClick={() => this.handleOperation('±')} className="btn btn-primary">±</button>
-                        <button onClick={() => this.handleOperation('%')} className="btn btn-primary">%</button>
+                        <button onClick={() => this.handleSpecialOperation('±')} className="btn btn-primary">±</button>
+                        <button onClick={() => this.handleSpecialOperation('%')} className="btn btn-primary">%</button>
                         <button onClick={() => this.handleOperation('/')} className="btn btn-secondary">/</button>
                     </div>
                     <div className="buttons-group">
@@ -105,8 +120,8 @@ class Calculator extends Component {
                     </div>
                     <div className="buttons-group">
                         <button onClick={() => this.handleNumber(0)} className="btn btn-primary btn-long">0</button>
-                        <button onClick={() => this.handleOperation('.')} className="btn btn-primary">.</button>
-                        <button onClick={() => this.handleOperation('=')} className="btn btn-secondary">=</button>
+                        <button onClick={() => this.handleSpecialOperation('.')} className="btn btn-primary">.</button>
+                        <button onClick={() => this.handleSpecialOperation('=')} className="btn btn-secondary">=</button>
                     </div>
                 </div>
             </div>

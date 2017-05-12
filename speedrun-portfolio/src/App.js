@@ -17,7 +17,8 @@ class App extends Component {
 			<div className="container">
 				<div className="row">
 					<div className="col-md-12">
-						<h2 className="text-center">Portfolio website</h2>
+						<h2 className="text-center">Portfolio website <small>These apps were built for the <a target="_blank" href="https://github.com/florinpop17/chingu-speedrun-may">Chingu Speedrun</a>. </small></h2>
+						<p>More to come... :)</p>
 						<ul>
 							{ projects ? projects.map((project, idx) => (
 								<li key={idx}>

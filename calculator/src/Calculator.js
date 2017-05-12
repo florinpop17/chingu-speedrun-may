@@ -9,6 +9,8 @@ class Calculator extends Component {
             curr: 0,
             operations: ['+', '-', '*', '/']
         }
+
+        this.findLastOperator = this.findLastOperator.bind(this);
     }
 
     handleNumber(nr) {
@@ -67,18 +69,50 @@ class Calculator extends Component {
     }
 
     handleSpecialOperation(operation) {
-        let { display, curr } = this.state;
+        let { display, curr, operations } = this.state;
 
         switch (operation) {
             case '=': {
+                if(operations.indexOf(display[display.length-1]) > -1){
+                    display.pop();
+                }
+
                 curr = eval(display.join('')); // to stay in line
-                display = [curr];
+                display = (curr+'').split('');
+                break;
+            }
+            case '.': {
+                let lastOpIdx = this.findLastOperator();
+                let hasDot = false;
+
+                if(lastOpIdx === -1) lastOpIdx = 0; // avoid the case where you don't have an operation before
+
+                for(let i=lastOpIdx; i<display.length; i++){
+                    if(display[i] === '.') {
+                        hasDot = true;
+                        break;
+                    }
+                }
+
+                if(!hasDot) display.push('.') // push dot only if doesn't exist from the last operation till the end
+
                 break;
             }
             default: break;
         }
 
         this.setState({ display, curr })
+    }
+
+    findLastOperator(){
+        let { display, operations } = this.state;
+
+        let idxLastOp = [-1, -1, -1, -1];
+        operations.forEach((op, idx) => {
+            idxLastOp[idx] = display.lastIndexOf(op);
+        })
+
+        return Math.max(...idxLastOp);
     }
 
     clearAll() {

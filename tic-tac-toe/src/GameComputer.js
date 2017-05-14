@@ -26,19 +26,24 @@ class GameComputer extends Component {
         let { cells, player, winner } = this.state;
 
         if(!winner) {
-            if(!cells[id]) cells[id] = player;
+            if(!cells[id]){
+                    cells[id] = player;
 
-            if(!this.checkWin(cells)) {
-                if(!this.checkDraw(cells)){
-                    this.computerMove(cells);
+                if(!this.checkWin(cells)) {
+                    if(!this.checkDraw(cells)){
+                        this.computerMove(cells);
+                    }
                 }
             }
 
         }
     }
 
-    computerMove(cells) {
-        const { computer } = this.state;
+    computerMove(cells, comp) {
+        let { computer } = this.state;
+        if(!computer) computer = comp; // when computer starts
+        console.log('comp', comp, cells)
+
         let move = Math.floor(Math.random() * 9);
 
         while(cells[move]){
@@ -50,7 +55,7 @@ class GameComputer extends Component {
         if(!this.checkWin(cells))
             this.checkDraw(cells);
 
-        this.setState(cells);
+        this.setState({ cells });
     }
 
 	checkWin(cells) {
@@ -89,7 +94,8 @@ class GameComputer extends Component {
 			winner: undefined,
             running: false,
 			draw: false,
-			current_player: 'X',
+            player: '',
+            computer: '',
 			won_combo: [0, 0, 0, 0, 0, 0, 0, 0, 0]
 		});
 	}
@@ -98,8 +104,8 @@ class GameComputer extends Component {
 		if(XorO === 'X'){
 			this.setState({ running: true, player: 'X', computer: 'O' });
 		} else {
-			this.setState({ running: true, player: 'O', computer: 'X' });
-            this.computerMove(this.state.cells);
+            this.computerMove(['', '', '', '', '', '', '', '', ''], 'X');
+    		this.setState({ running: true, player: 'O', computer: 'X' });
 		}
 	}
 

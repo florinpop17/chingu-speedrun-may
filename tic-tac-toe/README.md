@@ -19,3 +19,5 @@ Build an app that is functionally similar to this: https://codepen.io/FreeCodeCa
 * Twitter-bootstrap for the styling
 
 * Darkly bootswatch theme
+
+* Random Computer logic

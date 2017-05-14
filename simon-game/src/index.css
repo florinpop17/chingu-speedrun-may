@@ -4,6 +4,59 @@ body {
     font-family: sans-serif;
 }
 
+.game-container {
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    height: 500px;
+    width: 500px;
+    margin: 12% auto;
+    position: relative;
+}
+
+.buttons {
+    background-color: #ffffff;
+    cursor: pointer;
+    height: 250px;
+    width: 250px;
+}
+
+.buttons:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    z-index: 100;
+}
+
+.buttons.green {
+    background-color: #008744;
+    position: relative;
+}
+
+.buttons.blue {
+    background-color: #0057e7;
+    position: relative;
+}
+
+.buttons.red {
+    background-color: #d62d20;
+    position: relative;
+}
+
+.buttons.yellow {
+    background-color: #ffa700;
+    position: relative;
+}
+
+.actions {
+    background-color: #ffffff;
+    padding: 15px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 200;
+}
+
 footer {
     color: #dddddd;
 }

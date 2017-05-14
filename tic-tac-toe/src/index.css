@@ -38,6 +38,10 @@ body {
     font-size: 4em;
 }
 
+.mg-lr-10 {
+    margin: 0 10px;
+}
+
 footer {
     color: #dddddd;
 }

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
+import SimonGame from './SimonGame';
+
 class App extends Component {
 	render() {
 		return (
 			<div className="container-fluid">
 				<div className="row">
-					<div className="col-md-12">
-						<h2>Hello to React App</h2>
-					</div>
+					<SimonGame />
 
 					<footer className="nav navbar-inverse navbar-fixed-bottom">
 						<div className="container">

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Redirect, Switch, Link } from 'react-router-dom';
-import uuid from 'uuid';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
 import RecipesList from './RecipesList';
 import RecipeForm from './RecipeForm';
@@ -24,14 +23,17 @@ class App extends Component {
 
 						<nav className="navbar-default navbar-static-top">
 							<div className="container">
-								<h2>Recipe box <button className="btn btn-primary btn-sm pull-right">Add recipe</button></h2>
+								<h2>Recipe box <Link to="/recipe" className="btn btn-primary btn-sm pull-right">Add recipe</Link></h2>
 							</div>
 						</nav>
-
-						<Switch>
-							<Route exact path="/" render={() => ( <RecipesList recipes={recipes} /> )} />
-							<Route path="/recipe" render={() => ( <RecipeForm /> )} />
-						</Switch>
+						<div className="container">
+							<div className="row">
+								<Switch>
+									<Route exact path="/" render={() => ( <RecipesList recipes={recipes} /> )} />
+									<Route path="/recipe" render={() => ( <RecipeForm /> )} />
+								</Switch>
+							</div>
+						</div>
 
 						<footer className="nav navbar-default navbar-fixed-bottom">
 							<div className="container">

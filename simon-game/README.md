@@ -36,7 +36,3 @@ https://s3.amazonaws.com/freecodecamp/simonSound4.mp3.
 * Twitter-bootstrap for the styling
 
 * Slat theme from bootswatch
-
-## TODO
-
-* add active class to buttons when played.

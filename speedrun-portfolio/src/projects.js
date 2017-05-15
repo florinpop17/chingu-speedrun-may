@@ -1,4 +1,5 @@
 export default [
+	'recipe-box',
 	'camper-leaderboard',
 	'markdown-previewer',
 	'calculator',

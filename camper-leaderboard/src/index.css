@@ -4,8 +4,32 @@ body {
     font-family: sans-serif;
 }
 
+table img {
+    height: 30px;
+    width: 30px;
+}
+
+table td {
+    font-size: 1.3em;
+}
+
+table td:first-of-type {
+    text-align: center;
+    width: 50px;
+}
+
+table td:nth-of-type(3){
+    text-align: center;
+    width: 140px;
+}
+
+table td:last-of-type {
+    text-align: center;
+    width: 110px;
+}
+
 footer {
-    color: #dddddd;
+    color: #333333;
 }
 
 footer p {

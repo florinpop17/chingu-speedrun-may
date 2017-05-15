@@ -22,4 +22,4 @@ Build an app that is functionally similar to this: https://codepen.io/FreeCodeCa
 
 * Twitter-bootstrap for the styling
 
-* Readable bootswatch theme
+* Simplex bootswatch theme

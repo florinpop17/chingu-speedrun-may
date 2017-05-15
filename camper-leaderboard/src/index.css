@@ -4,6 +4,15 @@ body {
     font-family: sans-serif;
 }
 
+h2 small {
+    margin-top: 10px;
+}
+
+h2 small button {
+    margin-top: -10px;
+    margin-left: 10px;
+}
+
 table img {
     height: 30px;
     width: 30px;
@@ -26,6 +35,12 @@ table td:nth-of-type(3){
 table td:last-of-type {
     text-align: center;
     width: 110px;
+}
+
+table a {
+    color: #555555;
+    font-weight: 600;
+    text-decoration: underline;
 }
 
 footer {

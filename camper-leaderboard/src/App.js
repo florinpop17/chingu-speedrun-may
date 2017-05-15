@@ -39,7 +39,7 @@ class App extends Component {
 			<div className="container-fluid">
 				<div className="row">
 					<div className="col-md-12">
-						<h2>Leaderboard <button onClick={() => { this.changeView() }} className="btn btn-primary btn-sm pull-right">{ show === 'alltime' ? 'All time' : 'Last 30' }</button></h2>
+						<h2>Leaderboard <small className="pull-right">Toggle: <button onClick={() => { this.changeView() }} className="btn btn-primary btn-sm pull-right">{ show === 'alltime' ? 'All time' : 'Last 30' }</button></small></h2>
 						<table className="table table-striped table-bordered">
 							<thead>
 								<tr>
@@ -54,7 +54,7 @@ class App extends Component {
 									alltime.map((camper, idx) => (
 										<tr key={ idx }>
 											<td>{ idx + 1 }</td>
-											<td><img src={ camper.img } alt={ camper.username }/> <strong>{ camper.username }</strong></td>
+											<td><img src={ camper.img } alt={ camper.username }/> <a target="_blank" href={ 'https://www.freecodecamp.com/' + camper.username }>{ camper.username }</a></td>
 											<td>{ camper.recent }</td>
 											<td>{ camper.alltime }</td>
 										</tr>
@@ -63,7 +63,7 @@ class App extends Component {
 									recent.map((camper, idx) => (
 										<tr key={ idx }>
 											<td>{ idx + 1 }</td>
-											<td><img src={ camper.img } alt={ camper.username }/> <strong>{ camper.username }</strong></td>
+											<td><img src={ camper.img } alt={ camper.username }/> <a target="_blank" href={ 'https://www.freecodecamp.com/' + camper.username }>{ camper.username }</a></td>
 											<td>{ camper.recent }</td>
 											<td>{ camper.alltime }</td>
 										</tr>

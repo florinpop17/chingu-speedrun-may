@@ -1,4 +1,5 @@
 export default [
+	'camper-leaderboard',
 	'markdown-previewer',
 	'calculator',
 	'tic-tac-toe',

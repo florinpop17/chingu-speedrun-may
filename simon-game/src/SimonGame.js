@@ -23,24 +23,28 @@ class SimonGame extends Component {
 
     btnClick(color) {
         let { started, running } = this.state;
-        let { a_g, a_r, a_b, a_y } = this.refs;
+        let { a_g, a_r, a_b, a_y, d_g, d_r, d_b, d_y } = this.refs;
 
         if(started && !running) {
             if(color === 'g'){
                 console.log('Green pressed.');
                 a_g.play();
+                d_g.className += ' active';
             }
             if(color === 'b'){
                 console.log('Blue pressed.');
                 a_b.play();
+                d_b.className += ' active';
             }
             if(color === 'r'){
                 console.log('Red pressed.');
                 a_r.play();
+                d_r.className += ' active';
             }
             if(color === 'y'){
                 console.log('Yellow pressed.');
                 a_y.play();
+                d_y.className += ' active';
             }
         }
     }
@@ -79,32 +83,57 @@ class SimonGame extends Component {
 
     timed(i) {
         const { game } = this.state;
-        const { a_g, a_r, a_b, a_y } = this.refs;
+        const { a_g, a_r, a_b, a_y, d_g, d_r, d_b, d_y } = this.refs;
 
         setTimeout(() => {
             let current = game[i];
-            console.log(game, game[i], i);
+
             if(current === 0){
                 console.log('Green played.');
                 a_g.play();
+                d_g.className += ' active';
             }
             if(current === 1){
                 console.log('Blue played.');
                 a_b.play();
+                d_b.className += ' active';
             }
             if(current === 2){
                 console.log('Red played.');
                 a_r.play();
+                d_r.className += ' active';
             }
             if(current === 3){
                 console.log('Yellow played.');
                 a_y.play();
+                d_y.className += ' active';
             }
-        }, 1000 * i);
+        }, 1000 * i, () => {
+            console.log('timeout ended');
+        });
     }
 
     resetGame() {
         this.setState({ game: [], started: false, init: undefined });
+    }
+
+    componentDidMount() {
+        let { a_g, a_r, a_b, a_y, d_g, d_r, d_b, d_y } = this.refs;
+
+        // remove active class from tiles when sound is ended
+
+        a_g.onended = () => {
+            d_g.className = d_g.className.replace(' active', '');
+        };
+        a_r.onended = () => {
+            d_r.className = d_r.className.replace(' active', '');
+        };
+        a_b.onended = () => {
+            d_b.className = d_b.className.replace(' active', '');
+        };
+        a_y.onended = () => {
+            d_y.className = d_y.className.replace(' active', '');
+        };
     }
 
     render() {
@@ -113,10 +142,10 @@ class SimonGame extends Component {
         return (
             <div className="col-md-12">
                 <div className="game-container">
-                    <div onClick={() => this.btnClick('g')} className="buttons green"></div>
-                    <div onClick={() => this.btnClick('b')} className="buttons blue"></div>
-                    <div onClick={() => this.btnClick('r')} className="buttons red"></div>
-                    <div onClick={() => this.btnClick('y')} className="buttons yellow"></div>
+                    <div onClick={() => this.btnClick('g')} ref="d_g"className="buttons green"></div>
+                    <div onClick={() => this.btnClick('b')} ref="d_b"className="buttons blue"></div>
+                    <div onClick={() => this.btnClick('r')} ref="d_r"className="buttons red"></div>
+                    <div onClick={() => this.btnClick('y')} ref="d_y"className="buttons yellow"></div>
                     <div className="actions">
                         { !started ? (
                             <div className="text-center">

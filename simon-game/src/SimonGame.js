@@ -5,7 +5,7 @@ class SimonGame extends Component {
         super();
 
         this.state = {
-            total_games: 3,
+            total_games: 20,
             started: false,
             level: 1,
             strict: false,

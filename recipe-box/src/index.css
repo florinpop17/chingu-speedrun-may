@@ -4,6 +4,14 @@ body {
     font-family: sans-serif;
 }
 
+.navbar-static-top {
+    margin-bottom: 30px;
+}
+
+.navbar-static-top h2 {
+    margin: 10px;
+}
+
 footer {
     color: #444444;
 }

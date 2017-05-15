@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Redirect, Switch, Link } from 'react-router-dom';
 import uuid from 'uuid';
+
+import RecipesList from './RecipesList';
+import RecipeForm from './RecipeForm';
 
 class App extends Component {
 	state = {
@@ -14,29 +18,29 @@ class App extends Component {
 		const { recipes } = this.state;
 
 		return (
-			<div className="container-fluid">
-				<div className="row">
-					{ recipes ? (
-						recipes.map((recipe) => {
-							<div key={ recipe.id } className="panel panel-primary">
-								<div className="panel-heading">
-									{ recipe.title }
-								</div>
-							</div>
-						})
-					) : (
-						<div className="text-center">
-							<p className="lead">You have no recipes.</p>
-						</div>
-					)}
+			<Router>
+				<div className="container-fluid">
+					<div className="row">
 
-					<footer className="nav navbar-default navbar-fixed-bottom">
-						<div className="container">
-							<p className="text-center">Create with <i className="fa fa-heart"></i> by <a target="_blank" href="http://www.florin-pop.com">Florin Pop</a>. Github <a target="_blank" href="https://github.com/florinpop17/chingu-speedrun-may">repo</a>.</p>
-						</div>
-					</footer>
+						<nav className="navbar-default navbar-static-top">
+							<div className="container">
+								<h2>Recipe box <button className="btn btn-primary btn-sm pull-right">Add recipe</button></h2>
+							</div>
+						</nav>
+
+						<Switch>
+							<Route exact path="/" render={() => ( <RecipesList recipes={recipes} /> )} />
+							<Route path="/recipe" render={() => ( <RecipeForm /> )} />
+						</Switch>
+
+						<footer className="nav navbar-default navbar-fixed-bottom">
+							<div className="container">
+								<p className="text-center">Create with <i className="fa fa-heart"></i> by <a target="_blank" href="http://www.florin-pop.com">Florin Pop</a>. Github <a target="_blank" href="https://github.com/florinpop17/chingu-speedrun-may">repo</a>.</p>
+							</div>
+						</footer>
+					</div>
 				</div>
-			</div>
+			</Router>
 		);
 	}
 }

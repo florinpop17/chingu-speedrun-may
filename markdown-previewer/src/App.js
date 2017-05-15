@@ -3,7 +3,7 @@ import marked from 'marked';
 
 class App extends Component {
 	state = {
-		result: ''
+		result: '<p>Output will be here!</p>'
 	}
 
 	handleChange() {
@@ -14,6 +14,11 @@ class App extends Component {
 		this.setState({
 			result: marked(inp)
 		})
+	}
+
+	componentDidMount() {
+		// set default value
+		this.refs.inp.value = "# Hello to Markdown previwer. You can insert your markdown here.";
 	}
 
 	render() {

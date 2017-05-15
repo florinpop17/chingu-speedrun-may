@@ -16,3 +16,4 @@ You can find more informations about it [here](https://github.com/P1xt/chingu-fc
 | 14/05/2017   | [here](https://github.com/florinpop17/chingu-speedrun-may/tree/master/tic-tac-toe)          | [here](http://www.florin-pop.com/work/Portfolio%20Speedrun/tic-tac-toe/)          | Tic Tac Toe          |
 | 15/05/2017   | [here](https://github.com/florinpop17/chingu-speedrun-may/tree/master/simon-game)           | [here](http://www.florin-pop.com/work/Portfolio%20Speedrun/simon-game/)           | Simon Game           |
 | 15/05/2017   | [here](https://github.com/florinpop17/chingu-speedrun-may/tree/master/markdown-previewer)   | [here](http://www.florin-pop.com/work/Portfolio%20Speedrun/markdown-previewer/)   | Markdown Previewer   |
+| 15/05/2017   | [here](https://github.com/florinpop17/chingu-speedrun-may/tree/master/camper-leaderboard)   | [here](http://www.florin-pop.com/work/Portfolio%20Speedrun/camper-leaderboard/)   | Camper Leaderboard   |

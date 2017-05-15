@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
+import marked from 'marked';
 
 class App extends Component {
 	state = {
 		result: ''
+	}
+
+	handleChange() {
+		let { inp } = this.refs;
+
+		inp = inp.value;
+
+		this.setState({
+			result: marked(inp)
+		})
 	}
 
 	render() {
@@ -11,11 +22,11 @@ class App extends Component {
 		return (
 			<div className="container-fluid">
 				<div className="row">
-					<div className="col-md-6">
-						<textarea ref="input_text" className="form-control"></textarea>
+					<div className="col-sm-6">
+						<textarea ref="inp" onChange={() => { this.handleChange() }} className="form-control"></textarea>
 					</div>
-					<div className="col-md-6">
-						{ result }
+					<div className="col-sm-6">
+						<div className="content" dangerouslySetInnerHTML={{__html: result}}></div>
 					</div>
 
 					<footer className="nav navbar-inverse navbar-fixed-bottom">

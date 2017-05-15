@@ -1,7 +1,12 @@
 body {
-    margin: 0;
+    margin: 12% 0 0;
     padding: 0 0 70px;
     font-family: sans-serif;
+}
+
+textarea.form-control {
+    height: 300px;
+    max-width: 100%;
 }
 
 footer {

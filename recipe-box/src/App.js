@@ -5,16 +5,46 @@ import RecipesList from './RecipesList';
 import RecipeForm from './RecipeForm';
 
 class App extends Component {
-	state = {
-		recipes: []
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			recipes: [],
+			recipe_to_edit: undefined
+		}
+
+		this.getRecipes = this.getRecipes.bind(this);
+		this.onHandleEdit = this.onHandleEdit.bind(this);
+		this.onHandleDelete = this.onHandleDelete.bind(this);
 	}
 
 	componentDidMount() {
-		this.setState({ recipes: localStorage.getItem('recipes') || [] }); // get recipes from localStorage or empty array
+		this.getRecipes();
+	}
+
+	getRecipes() {
+		this.setState({
+			recipes: JSON.parse(localStorage.getItem('recipes')) || [], // get recipes from localStorage or empty array
+			recipe_to_edit: undefined // reset recipe to edit
+		});
+	}
+
+	onHandleEdit(id) {
+		console.log(id);
+		this.setState({ recipe_to_edit: id });
+	}
+
+	onHandleDelete(id) {
+		let { recipes } = this.state;
+
+		recipes = recipes.filter(recipe => recipe.id !== id);
+
+		localStorage.setItem('recipes', JSON.stringify(recipes));
+		this.getRecipes();
 	}
 
 	render() {
-		const { recipes } = this.state;
+		const { recipes, recipe_to_edit } = this.state;
 
 		return (
 			<Router>
@@ -23,14 +53,14 @@ class App extends Component {
 
 						<nav className="navbar-default navbar-static-top">
 							<div className="container">
-								<h2>Recipe box <Link to="/recipe" className="btn btn-primary btn-sm pull-right">Add recipe</Link></h2>
+								<h2><Link to="/">Recipe box</Link> <Link to="/recipe" className="btn btn-primary btn-sm pull-right">Add recipe</Link></h2>
 							</div>
 						</nav>
 						<div className="container">
 							<div className="row">
 								<Switch>
-									<Route exact path="/" render={() => ( <RecipesList recipes={recipes} /> )} />
-									<Route path="/recipe" render={() => ( <RecipeForm /> )} />
+									<Route exact path="/" render={() => ( <RecipesList recipes={recipes} handleEdit={this.onHandleEdit} handleDelete={this.onHandleDelete} /> )} />
+									<Route path="/recipe" render={() => ( <RecipeForm update={this.getRecipes} recipe_to_edit={recipe_to_edit} /> )} />
 								</Switch>
 							</div>
 						</div>

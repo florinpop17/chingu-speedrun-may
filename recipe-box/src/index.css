@@ -12,6 +12,10 @@ body {
     margin: 10px;
 }
 
+.action-buttons button{
+    margin-left: 5px;
+}
+
 footer {
     color: #444444;
 }

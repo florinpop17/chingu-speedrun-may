@@ -28,9 +28,11 @@ class App extends Component {
 			<div className="container-fluid">
 				<div className="row">
 					<div className="col-sm-6">
+						<h3>Insert your text:</h3>
 						<textarea ref="inp" onChange={() => { this.handleChange() }} className="form-control"></textarea>
 					</div>
 					<div className="col-sm-6">
+						<h3>Markdown: </h3>
 						<div className="content" dangerouslySetInnerHTML={{__html: result}}></div>
 					</div>
 

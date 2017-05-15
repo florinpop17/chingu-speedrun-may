@@ -19,6 +19,10 @@ textarea.form-control {
     margin-top: 0;
 }
 
+.content *:last-child {
+    margin-bottom: 0;
+}
+
 footer {
     color: #dddddd;
 }

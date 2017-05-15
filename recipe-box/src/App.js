@@ -16,6 +16,7 @@ class App extends Component {
 		this.getRecipes = this.getRecipes.bind(this);
 		this.onHandleEdit = this.onHandleEdit.bind(this);
 		this.onHandleDelete = this.onHandleDelete.bind(this);
+		this.clearEditId = this.clearEditId.bind(this);
 	}
 
 	componentDidMount() {
@@ -24,8 +25,7 @@ class App extends Component {
 
 	getRecipes() {
 		this.setState({
-			recipes: JSON.parse(localStorage.getItem('recipes')) || [], // get recipes from localStorage or empty array
-			recipe_to_edit: undefined // reset recipe to edit
+			recipes: JSON.parse(localStorage.getItem('recipes')) || [] // get recipes from localStorage or empty array
 		});
 	}
 
@@ -43,6 +43,12 @@ class App extends Component {
 		this.getRecipes();
 	}
 
+	clearEditId() {
+		this.setState({
+			recipe_to_edit: undefined
+		});
+	}
+
 	render() {
 		const { recipes, recipe_to_edit } = this.state;
 
@@ -53,14 +59,14 @@ class App extends Component {
 
 						<nav className="navbar-default navbar-static-top">
 							<div className="container">
-								<h2><Link to="/">Recipe box</Link> <Link to="/recipe" className="btn btn-primary btn-sm pull-right">Add recipe</Link></h2>
+								<h2><Link to="/work/Portfolio Speedrun/recipe-box/">Recipe box</Link> <Link to="/work/Portfolio Speedrun/recipe-box/recipe" onClick={this.clearEditId} className="btn btn-primary btn-sm pull-right">Add recipe</Link></h2>
 							</div>
 						</nav>
 						<div className="container">
 							<div className="row">
 								<Switch>
-									<Route exact path="/" render={() => ( <RecipesList recipes={recipes} handleEdit={this.onHandleEdit} handleDelete={this.onHandleDelete} /> )} />
-									<Route path="/recipe" render={() => ( <RecipeForm update={this.getRecipes} recipe_to_edit={recipe_to_edit} /> )} />
+									<Route exact path="/work/Portfolio Speedrun/recipe-box/" render={() => ( <RecipesList recipes={recipes} handleEdit={this.onHandleEdit} handleDelete={this.onHandleDelete} /> )} />
+									<Route path="/work/Portfolio Speedrun/recipe-box/recipe" render={() => ( <RecipeForm update={this.getRecipes} recipe_to_edit={recipe_to_edit} /> )} />
 								</Switch>
 							</div>
 						</div>

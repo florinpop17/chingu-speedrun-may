@@ -11,7 +11,7 @@ class RecipesList extends Component {
 
 	editRecipe(id) {
 		this.props.handleEdit(id);
-		this.props.history.push('/recipe');
+		this.props.history.push('/work/Portfolio Speedrun/recipe-box/recipe');
 	}
 
 	render() {

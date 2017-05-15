@@ -51,6 +51,8 @@ class RecipeForm extends Component {
         } else {
             this.setState({ error: 'Please add few ingredients.', success: '' });
         }
+
+        setTimeout(() => { this.setState({ success: '', error: '' }) }, 1500);
     }
 
     componentDidMount() {

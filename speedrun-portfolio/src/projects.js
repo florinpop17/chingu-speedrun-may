@@ -1,4 +1,5 @@
 export default [
+	'markdown-previwer',
 	'calculator',
 	'tic-tac-toe',
 	'pomodoro-clock',
